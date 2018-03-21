@@ -1,0 +1,45 @@
+<span ng-init="allUsersGames(currentUser._id)"></span>
+<h1>{{currentUser.username}}'s games list</h1>
+<div class="alert alert-info" ng-show="message">
+    {{message}}
+</div>
+<div class="alert alert-danger" ng-show="error">
+    {{error}}
+</div>
+<h6>Share with your friends <a href="#/list/user/{{currentUser._id}}">http://localhost:3000/#/list/user/{{currentUser._id}}</a></h6>
+<div class="table-responsive col-md-12">
+    <table class="table">
+        <thead>
+        <tr class="col-md-12">
+            <th>#</th>
+            <th class="row col-sm-4">Title</th>
+            <th>Platform</th>
+            <th>Genre</th>
+            <th>Year of release</th>
+            <th>Last update</th>
+            <th class="row col-sm-2">Rate</th>
+            <th class="row col-sm-3">Change status</th>
+            <th ng-show="currentUser">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="game in listUsersGames">
+            <td>{{ $index + 1 }}</td>
+            <td>{{ game.data.name }}</td>
+            <td>{{ game.data.platform }}</td>
+            <td>{{ game.data.genres }}</td>
+            <td>{{ game.data.releaseDate }}</td>
+            <td>{{ userGamesRAW[game.data._id].lastUpdated | date:'d/M/yy H:mm:ss' }}</td>
+            <td><select class="form-control input-md" type="text" ng-name="x" ng-change="updateUsersGame(userGamesRAW[game.data._id])"
+                        ng-model="userGamesRAW[game.data._id].rate" ng-options="x for x in rates">{{ x }}</select>
+            <td><select class="form-control input-md" type="text" ng-change="updateUsersGame(userGamesRAW[game.data._id])"
+                        ng-model="userGamesRAW[game.data._id].status" ng-options="x for x in statuses">{{ x }}
+            <td>
+                <button ng-click="deleteUsersGame(userGamesRAW[game.data._id]);allUsersGames(currentUser._id)">Delete<i
+                        class="fas fa-trash-alt"></i></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>

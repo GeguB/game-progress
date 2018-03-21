@@ -1,0 +1,11 @@
+<h1>Add new Game</h1>
+
+{{error}}
+<div class="alert alert-info" ng-show="message">
+    {{message}}
+</div><input  ng-model="game.name"  class="form-control" placeholder="Title"/>
+<input  ng-model="game.releaseDate"  class="form-control" placeholder="Year of release" type="number"/>
+<input  ng-model="game.platform" class="form-control" placeholder="Platform"/>
+<input  ng-model="game.genres" class="form-control" placeholder="Genre"/>
+<button ng-click="newGame(game)" class="btn btn-primary btn-block">Add</button><br/>
+

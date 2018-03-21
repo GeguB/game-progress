@@ -1,0 +1,37 @@
+<span ng-init="allUsersGames(userID)"></span>
+<h1>{{userID}}'s games list</h1>
+<div class="alert alert-info" ng-show="message">
+    {{message}}
+</div>
+<div class="alert alert-danger" ng-show="error">
+    {{error}}
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Year of release</th>
+            <th>Platform</th>
+            <th>Last update</th>
+            <th>Rate</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="game in listUsersGames">
+            <td>{{ $index + 1 }}</td>
+            <td>{{ game.data.name }}</td>
+            <td>{{ game.data.genres }}</td>
+            <td>{{ game.data.releaseDate }}</td>
+            <td>{{ game.data.platform }}</td>
+            <td>{{ userGamesRAW[game.data._id].lastUpdated | date:'d/M/yy H:mm:ss' }}</td>
+            <td>{{ userGamesRAW[game.data._id].rate }}</td>
+            <td>{{ userGamesRAW[game.data._id].status }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>

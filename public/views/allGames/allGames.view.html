@@ -1,0 +1,38 @@
+<h1>Games list</h1>
+
+<div class="alert alert-info" ng-show="message">
+    {{message}}
+</div>
+<div class="alert alert-danger" ng-show="error">
+    {{error}}
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <!--<th>#</th>-->
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Year of release</th>
+            <th>Platform</th>
+            <th>Average User rate</th>
+            <th ng-show="currentUser">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="game in allGames">
+            <!--<td>1</td>-->
+            <td>{{ game.name }}</td>
+            <td>{{ game.genres }}</td>
+            <td>{{ game.releaseDate }}</td>
+            <td>{{ game.platform }}</td>
+            <td ng-init="gameAverageRate(game._id)">{{ avgRate[$index] }} (votes: {{votesNo[$index]}})</td>
+            <!--<td>0</td>-->
+            <td>
+                <button ng-show="currentUser" ng-click="mapGametoUser(game, currentUser._id)">Add to my list</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
